@@ -1,66 +1,112 @@
-# Install virtualenv if you haven't already
-pip3 install virtualenv
+# AI Swapper
 
-# Create a virtual environment
-python3 -m venv venv
+AI Swapper is an intelligent, multi-model agent designed for the QuickNode Hackathon. It provides users with the ability to create, manage, and swap cryptocurrency assets directly through an interactive chatbot interface powered by advanced language models. The project leverages the power of the Coinbase SDK and the Odos DEX aggregator to enable seamless wallet interactions and token swaps.
 
-# Activate the virtual environment
-source venv/bin/activate
+## Table of Contents
+- [AI Swapper](#ai-swapper)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Setup Instructions](#setup-instructions)
+  - [Tech Stack](#tech-stack)
+  - [Basic Functionality](#basic-functionality)
+    - [Wallet Creation](#wallet-creation)
+    - [Wallet Interaction](#wallet-interaction)
+  - [Swapping Mechanism](#swapping-mechanism)
+  - [Workflow](#workflow)
+  - [Next Steps](#next-steps)
+  - [Example Chat Log](#example-chat-log)
 
-# Install the requirements
-pip install cdp-sdk
+## Installation
 
-# Now you can run using either python or python3
-python cdp.py
+### Prerequisites
+Ensure you have Python 3 installed. If not, download and install it from [python.org](https://www.python.org/).
 
-# Depend
-pip install langchain langchain-openai python-dotenv openai
-pip install python-dotenv
+### Setup Instructions
+1. Install `virtualenv` if you haven't already:
+    ```bash
+    pip3 install virtualenv
+    ```
 
+2. Create a virtual environment:
+    ```bash
+    python3 -m venv venv
+    ```
 
-# Ai Swapper
+3. Activate the virtual environment:
+    - **On Unix or MacOS**:
+        ```bash
+        source venv/bin/activate
+        ```
+    - **On Windows**:
+        ```bash
+        venv\Scripts\activate
+        ```
 
-# Workflow
-Ai Swapper is a multiple model agent that allows users to swap directly with a chat bot
+4. Install the required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-# tech stack
-langchain
-Coinbase sdk
+   **Note**: If you don't have a `requirements.txt` file, you can install the packages individually:
+    ```bash
+    pip install cdp-sdk langchain langchain-openai python-dotenv openai
+    ```
 
-## Basic function
+5. Run the project:
+    ```bash
+    python main.py
+    ```
 
-1. Ai swapper uses coinbase sdk to allows a user to interact with a  chat bot to create an ai power wallet 
-2. The wallet has the ability to receive ERC-20 tokens
-3. The user can the ask the chat bot the tokens in the current wallet 
+## Tech Stack
+- **LangChain**: Used for building advanced conversational AI.
+- **Coinbase SDK**: Provides wallet functionalities and enables ERC-20 token interactions.
+- **Odos DEX Aggregator**: Used for fetching token swap quotes and executing swaps.
 
-## Swapping Mechinism
+## Basic Functionality
 
-1. User with a fund wallet tells the chat bot it wants to swap asset ```a``` for ```b```
-2. The bot checks the balance of the user to make sure they can swap the ```a``` token for n amount
-3. The Chat bot has a swapping agaent that calls the Odos dex aggratoer and ask for ta quote for the proposed assets
-4. The bot returns the quote in the chat
-5. user choices yes or no to the quote
-6. When Quote is approved the bot calls swap api on Odos
-7. once swap is complete the bot returns the swap metadata
+### Wallet Creation
+- The chatbot interacts with users to create an AI-powered wallet using the Coinbase SDK.
+- The wallet can receive ERC-20 tokens, and users can check their balance at any time.
 
+### Wallet Interaction
+- Users can inquire about the tokens held within their wallet via the chatbot.
 
-# Next set
+## Swapping Mechanism
+1. The user initiates a swap by specifying the asset they want to swap (asset A) for another asset (asset B).
+2. The bot checks the user's wallet balance to ensure there are sufficient funds for the swap.
+3. The bot calls the Odos DEX aggregator's API to get a quote for the swap.
+4. The bot presents the swap quote to the user in the chat.
+5. The user confirms or declines the quote.
+6. If approved, the bot executes the swap using the Odos API.
+7. The bot returns the swap metadata to the user once the transaction is complete.
 
-Try to get a basic chat going in the frontend
+## Workflow
+1. The user begins by chatting with the bot.
+2. The bot guides the user through wallet creation and funding.
+3. The user can check their wallet balance and request a token swap.
+4. The bot verifies funds, fetches a swap quote from Odos, and presents it.
+5. The user approves or denies the swap.
+6. Successful swaps return complete metadata to the user for confirmation.
 
-## chat log
-- Bot: "Howdy do you want to create a wallet"
+## Next Steps
+- Integrate a frontend to facilitate real-time chat interactions.
+- Enhance the user experience by adding swap history tracking and notifications.
+
+## Example Chat Log
+```sql
+- Bot: "Howdy, do you want to create a wallet?"
 - User: "Yes"
-- Bot: "Calls create_wallet and returns address"
-- Bot: "Do you wan to fund the wallet?"
+- Bot: (Calls `create_wallet` and returns the wallet address)
+- Bot: "Do you want to fund the wallet?"
 - User: "Yes {sends USDC}"
 - User: "Check Balance"
-- Bot: "Nice, Your wallet is funded"
+- Bot: "Nice, your wallet is funded."
 - Bot: "Would you like to make a swap?"
-- User: "Yes swap my USDC for Base/Ether"
-- Bot: "Great, I'm on it"
-- Bot: Makes api call to Odos to get a qoute for a USDC Base Ether swap
-- Bot: "Here's you swap qoute {quote}. Do you want to perform this swap?"
-- User: "yes"
-- Bot: Makes api call to Odos to swap the asset
-- Bot: Returns swap metadata
+- User: "Yes, swap my USDC for Base/Ether."
+- Bot: "Great, I'm on it."
+- Bot: (Makes an API call to Odos to get a quote for a USDC to Base Ether swap)
+- Bot: "Here's your swap quote: {quote}. Do you want to perform this swap?"
+- User: "Yes"
+- Bot: (Makes an API call to Odos to execute the swap)
+- Bot: (Returns swap metadata)
