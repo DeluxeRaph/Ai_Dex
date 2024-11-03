@@ -18,10 +18,6 @@ logger = logging.getLogger(__name__)
 
 # Token configuration
 TOKEN_CONFIG = {
-    'ETH': {
-        'address': '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',  # Native ETH address for Odos
-        'decimals': 18
-    },
     'USDC': {
         'address': '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
         'decimals': 6
@@ -70,7 +66,6 @@ class AgentChat:
                 1. When user asks for a swap:
                    - Parse the input amount and tokens carefully
                    - Convert human-readable amounts to proper decimals based on the token
-                   - For ETH swaps, use address: {TOKEN_CONFIG['ETH']['address']}
                    - For USDC swaps, use address: {TOKEN_CONFIG['USDC']['address']}
                    - For AERO swaps, use address: {TOKEN_CONFIG['AERO']['address']}
                    - Use chain ID 8453 (Base)
