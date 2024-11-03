@@ -1,9 +1,9 @@
-# AI Swapper
+# AI Dex
 
-AI Swapper is an intelligent, multi-model agent designed for the QuickNode Hackathon. It provides users with the ability to create, manage, and swap cryptocurrency assets directly through an interactive chatbot interface powered by advanced language models. The project leverages the power of the Coinbase SDK and the Odos DEX aggregator to enable seamless wallet interactions and token swaps.
+AI Dex is an intelligent, multi-model agent designed for the QuickNode Hackathon. It provides users with the ability to create, manage, and swap cryptocurrency assets directly through an interactive chatbot interface powered by advanced language models. The project leverages the power of the Coinbase SDK and the Odos DEX aggregator to enable seamless wallet interactions and token swaps.
 
 ## Table of Contents
-- [AI Swapper](#ai-swapper)
+- [AI Dex](#ai-dex)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
